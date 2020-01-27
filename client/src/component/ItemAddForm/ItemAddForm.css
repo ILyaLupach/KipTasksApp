@@ -1,0 +1,20 @@
+.addtaskstittle{
+    width: 100vw;
+    text-align: center;
+    background-color: #00a5d360;
+    padding: 2px;
+}
+.addtaskstittle:first-child{
+    margin-bottom: 10px;
+}
+#root .makeStyles-chip-78{
+    background-color: #00a5d360;
+}
+.timeinputtitle{
+    margin: 20px 0 5px 0;
+}
+.MuiMenuItem-root .MuiButton-contained{
+    background-color: #00a5d360;
+    font-size: 14px;
+    text-transform: none;
+}

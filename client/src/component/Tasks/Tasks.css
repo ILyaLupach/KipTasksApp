@@ -1,0 +1,50 @@
+.workShopItem{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.workShopItem--title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+    justify-content: center;
+}
+
+.workShopItem--time{
+    font-size: 18px;
+    font-weight: 900;
+    width: 40%;
+}
+.workShopItem--subtitle{
+    font-weight: 600;
+    font-size: 18px;
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+}
+.workShopItem--object{
+    color: #00a4d3;
+    font-size: 22px;
+}
+.workShopItem--person{
+    font-size: 22px;
+}
+.MuiExpansionPanelDetails-root{
+    padding-top: 0;
+}
+.workShopItem--comment{
+    font-size: 18px;
+    font-weight: 900;
+    margin-left: 10px;
+}
+.MuiExpansionPanel-rounded:last-child{
+    border-bottom: #00a4d3 solid 1px;
+}
+
+.workshoplist{
+    max-height: 100vh;
+    overflow-y: scroll; /* прокрутка по вертикали */
+}
