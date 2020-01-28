@@ -12,11 +12,16 @@ import "./ItemAddForm.css";
 
 
 
-export default function InputDate() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+export default function InputDate({selectedDate, setSelectedDate, selectedStart, setSelectedStart, selectedFinish, setSelectedFinish}) {
 
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setSelectedDate(date); 
+  };
+  const handleStartChange = date => {
+    setSelectedStart(date); 
+  };  
+  const handleFinishChange = date => {
+    setSelectedFinish(date); 
   };
 
   return (
@@ -44,11 +49,12 @@ export default function InputDate() {
         <div className="timeinputtitle">
             <TimeInput
               mode='24h'
-              onChange={handleDateChange}/>
+              value={selectedStart}
+              onChange={handleStartChange}/>
             <TimeInput
               mode='24h'
-              value={selectedDate}
-              onChange={handleDateChange}
+              value={selectedFinish}
+              onChange={handleFinishChange}
             />
         </div>
 

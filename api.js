@@ -6,21 +6,21 @@ const workshop = require("./workshop");
 
 
 ////////////   person   ////////////
-router.get("/person", (req, res)=>{
+router.get("/persons", (req, res)=>{
   person.find({})
     .then((person) => {
         res.send(person);
     })
 });
 
-router.post("/person", (req, res)=>{
+router.post("/persons", (req, res)=>{
   person.create(req.body)
     .then((person) => {
         res.send(person)
     })
 });
 
-router.put("/person/:id", (req, res)=>{
+router.put("/persons/:id", (req, res)=>{
   person.findByIdAndUpdate({_id: req.params.id}, req.body)
     .then(() => {
       kipbd.findOne({_id: req.params.id})
@@ -30,7 +30,7 @@ router.put("/person/:id", (req, res)=>{
     })
 });
 
-router.delete("/person/:id", (req, res)=>{
+router.delete("/persons/:id", (req, res)=>{
   person.deleteOne({_id: req.params.id})
     .then((person) => {
         res.send(person)
@@ -73,21 +73,21 @@ router.delete("/tasks/:id", (req, res)=>{
 
 ///////////// workshop ///////////
 
-router.get("/workshop", (req, res)=>{
+router.get("/workshops", (req, res)=>{
   workshop.find()
     .then((workshop) => {
         res.send(workshop)
     })
 });
 
-router.post("/workshop", (req, res)=>{
+router.post("/workshops", (req, res)=>{
   workshop.create(req.body)
     .then((workshop) => {
         res.send(workshop)
     })
 });
 
-router.put("/workshop/:id", (req, res)=>{
+router.put("/workshops/:id", (req, res)=>{
   workshop.findByIdAndUpdate({_id: req.params.id}, req.body)
     .then(() => {
       kipbd.findOne({_id: req.params.id})

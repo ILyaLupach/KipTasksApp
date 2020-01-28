@@ -1,5 +1,5 @@
 import 'date-fns';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import "./ItemAddForm.css";
 
@@ -53,20 +53,11 @@ function getStyles(name, personName, theme) {
   }
 
 
-const names = [
-  'Лупач Илья',
-  'Сергиеня Павел',
-  'Сергиенко Павел',
-  'Шимук Денис',
-  'Комаров Александр'
-];
 
-export default function ItemAddForm() {
+
+export default function ItemAddForm({personName, setPersonName, persons}) {
   const classes = useStyles();
   const theme = useTheme();
-  
-  const [personName, setPersonName] = React.useState([]);
-
 
   const handlePersonChange = event => {
     setPersonName(event.target.value);
@@ -91,14 +82,14 @@ export default function ItemAddForm() {
             </div>
           )}
           MenuProps={MenuProps}
-        >
-          {names.map(name => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-              {name}
+        > 
+        { !persons ? (<h2>Loading...</h2>) : 
+          persons.map(item => (
+            <MenuItem key={item._id} value={`${item.surname} ${item.name}`} style={getStyles(item, personName, theme)}>
+              {`${item.surname} ${item.name}`}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-
   );
 }

@@ -19,4 +19,37 @@ export default class ServerKip {
             })
         return await tasks;
     };
+
+    getAllWorkshops = async () => {
+        const workshops = this.getResource("/workshops")
+            .then((res) => {
+                return  res
+            })
+        return await workshops;
+    };
+
+    getAllPersons = async () => {
+        const persons = this.getResource("/persons")
+            .then((res) => {
+                return  res
+            })
+        return await persons;
+    };
+
+
+    taskPushTasks = async (data) => {
+        const push = await fetch("/tasks", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+            })
+        return await push
+    }
+
+
+
+    
 }

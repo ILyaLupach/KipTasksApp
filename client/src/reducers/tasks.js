@@ -1,6 +1,4 @@
 const initialState = {
-    person: {},
-    workshop: {},
     loading: false,
     tasks: null
 }

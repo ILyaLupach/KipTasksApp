@@ -30,7 +30,9 @@
     font-size: 22px;
 }
 .workShopItem--person{
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
 }
 .MuiExpansionPanelDetails-root{
     padding-top: 0;
@@ -46,5 +48,9 @@
 
 .workshoplist{
     max-height: 100vh;
+    padding-top: 60px;
     overflow-y: scroll; /* прокрутка по вертикали */
+}
+#root .MuiExpansionPanelSummary-root{
+    padding: 0;
 }

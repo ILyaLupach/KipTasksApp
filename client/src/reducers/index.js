@@ -1,7 +1,11 @@
   
 import {combineReducers} from "redux";
-import getReducer from './getReducer';
+import tasksReducer from "./tasks";
+import workshopsReducers from "./workshops";
+import personsReducers from "./persons";
 
 export default combineReducers({
-    getReducer: getReducer
+    tasksReducer: tasksReducer,
+    workshopsReducers: workshopsReducers,
+    personsReducers: personsReducers
 })

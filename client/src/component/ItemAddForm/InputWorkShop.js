@@ -167,11 +167,122 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function InputWorkShop() {
+export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, selectedObject, setselectedObject}) {
   const classes = useStyles();
+
+  const ArrWorkShops = [
+    {
+        object: [
+            "выжимная",
+            "грильяж",
+            "minipack",
+            "птичка",
+            "рецептурка",
+            "патока",
+            "карамельная линия",
+            "тп16",
+            "весовой дозатор",
+            "завертка выжимная",
+            "завертка карамельная"
+        ],
+        _id: "5e297dc0bcc72c1938b7b622",
+        name: "1й конфетный",
+    },
+    {
+        object: [
+            "156 склад",
+            "Chepi",
+            "Chocotech глазировка",
+            "Dinnisen",
+            "Mogul",
+            "Sollich(Взбивная)",
+            "Вафельная линия",
+            "Вафельная печь",
+            "Взбивная",
+            "Завертка Mogul",
+            "Завертка PFM",
+            "Завертка вафельная",
+            "Завертка карера",
+            "Минипак",
+            "Паточная",
+            "Рецептурка 2й этаж",
+            "Сырьевая (сахар, патока)",
+            "Упаковка Ilapak",
+            "Холодный штамп (завертка)",
+            "Холодный штамп (кухня)",
+            "Yamato",
+            "Кухня взбивная"
+        ],
+        _id: "5e298128bcc72c1938b7b623",
+        name: "2й конфетный",
+    },
+    {
+        object: [
+            "2 этаж темперирующая машина",
+            "4 этаж принтер",
+            "Варочное отделение",
+            "Вафельная печь(старая)",
+            "Выжимная линия",
+            "Глазировка Loveras",
+            "Завёртка выжимная",
+            "Завертка столичная",
+            "Размазка Олега",
+            "Рецептурка. Миланжора",
+            "Тележка Комаева",
+            "Турецкая вафля",
+            "Фасовка",
+            "Глазировка MF Hamburg"
+        ],
+        _id: "5e298179bcc72c1938b7b624",
+        name: "3й конфетный",
+    },
+    {
+        object: [
+            "315 линия",
+            "OneShot",
+            "бисерка",
+            "Двухвалка",
+            "завертка 50 гр",
+            "Завёртка OneShot",
+            "Какао порошок",
+            "Какао-пресс",
+            "Конвейер",
+            "конш 1",
+            "конш 2",
+            "конш 4",
+            "конш 5",
+            "минипак",
+            "Обжарка",
+            "Президентский шоколад",
+            "Пятивалка",
+            "Рецептурка",
+            "Рецептурка. 2 этаж",
+            "конш 6",
+            "теплопункт",
+            "операторская"
+        ],
+        _id: "5e2981b1bcc72c1938b7b625",
+        name: "Старый шоколадный",
+    },
+    {
+        object: [
+            "Jensen",
+            "Jensen конш начинки",
+            "Jensen распред конвеер",
+            "ShowBox",
+            "Емкость с начинкой(2т)",
+            "Завёртка Jensen",
+            "Завёртка Jensen LoeshPack",
+            "Конш",
+            "Мойка форм"
+        ],
+        _id: "5e2981cdbcc72c1938b7b626",
+        name: "Новый шоколадный",
+    }
+]
+
   const [workshops, setWorkshops] = React.useState(ArrWorkShops);
-  const [selectedWorkshops, setSelectedWorkshops] = React.useState('Цех');
-  const [selectedObject, setselectedObject] = React.useState('Объект');
+
 
   const handleChangeWorkshops = event => {
     setSelectedWorkshops(event.target.value); 
@@ -182,10 +293,8 @@ export default function InputWorkShop() {
   };
 
 
-
   return (
     <div>
-
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-customized-select-label">Цех</InputLabel>
         <Select
@@ -205,7 +314,6 @@ export default function InputWorkShop() {
         </Select>
       </FormControl>
 
-
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-customized-select-label">Объект</InputLabel>
         <Select
@@ -215,11 +323,9 @@ export default function InputWorkShop() {
           onChange={handleChangeObject}
           input={<BootstrapInput />}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
+
         {
-          selectedWorkshops === 'Цех'
+          selectedWorkshops === ''
             ? <MenuItem value=""> <em>None</em> </MenuItem> 
             : workshops.filter((item) => item.name === selectedWorkshops)[0]
           .object.map((item, i) => (<MenuItem value={item} key={`${selectedWorkshops}object${i}`}>{item}</MenuItem>)) 
@@ -229,9 +335,6 @@ export default function InputWorkShop() {
           </MenuItem>
         </Select>
       </FormControl>
-
-      {/* <button onClick={()=> {
-        console.log(selectedWorkshops, selectedObject)}}>clg</button> */}
     </div>
   );
 }

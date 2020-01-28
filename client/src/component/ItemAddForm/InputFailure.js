@@ -11,11 +11,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function InputFailure() {
+export default function InputFailure({valueFailure, setValueFailure, valueFixed, setValueFixed}) {
   const classes = useStyles();
-
-  const [valueFailure, setValueFailure] = React.useState("");
-  const [valueFixed, setValueFixed] = React.useState("");
 
 
   const handleChangeFailure = event => {
