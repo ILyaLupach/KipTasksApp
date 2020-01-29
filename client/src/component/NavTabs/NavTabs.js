@@ -65,7 +65,7 @@ export default function ScrollableTabsButtonPrevent() {
           aria-label="scrollable prevent tabs example"
         >
           <Tab icon={<Link to="/" >  <MenuBookIcon style={{ fontSize: 40 }} /></Link>} aria-label="workshop" />
-          <Tab icon={<Link to="/person"><AccountBoxIcon style={{ fontSize: 40 }} /></Link>} aria-label="person" />
+          <Tab icon={<Link to="/persons"><AccountBoxIcon style={{ fontSize: 40 }} /></Link>} aria-label="person" />
           <Tab icon={<Link to="/statistics"><PieChartIcon style={{ fontSize: 40 }} /></Link>} aria-label="workshop" />
         </Tabs>
         

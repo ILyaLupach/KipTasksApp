@@ -33,6 +33,8 @@
     font-size: 20px;
     font-weight: normal;
     text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .MuiExpansionPanelDetails-root{
     padding-top: 0;
@@ -49,7 +51,8 @@
 .workshoplist{
     max-height: 100vh;
     padding-top: 60px;
-    overflow-y: scroll; /* прокрутка по вертикали */
+    overflow-y: scroll;
+    padding-bottom: 40px; /* прокрутка по вертикали */
 }
 #root .MuiExpansionPanelSummary-root{
     padding: 0;

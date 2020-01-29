@@ -49,7 +49,26 @@ export default class ServerKip {
         return await push
     }
 
+    
+    addNewPerson = async (data) => {
+        const person = await fetch("/persons", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+            })
 
+        return await person
+    }
+
+    
+    deleteItem = (id, url) => {
+        fetch(`/${url}/${id}`, {
+            method: "DELETE"
+        })
+    }
 
     
 }

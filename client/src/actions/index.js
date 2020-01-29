@@ -12,3 +12,4 @@ export const getAllPersons = (persons) => ({
     type: "GET_ALL_PERSONS",
     payload: persons
 })
+

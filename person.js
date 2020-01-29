@@ -4,10 +4,8 @@ const Schema = mongoose.Schema;
 const personSchema = new Schema({
         name: String,
         surname: String,
-        age: Number,
-        phone: Number,
+        phone: String,
         position: String
-
 });
 
 

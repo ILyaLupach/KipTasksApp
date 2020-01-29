@@ -43,7 +43,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
   const serv = new ServerKip();
   const classes = useStyles();
 
-   const [complited, setComplited] = useState(false);
+  const [complited, setComplited] = useState(false);
   const [validate, setValidate] = useState(true);
   const [error, setError] = useState(false);
 

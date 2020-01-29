@@ -6,6 +6,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import Button from '@material-ui/core/Button';
 
 
@@ -292,6 +295,11 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
     setselectedObject(event.target.value); 
   };
 
+  const _handleKeyDownObject = (e) => {
+    if (e.key === 'Enter') {
+      setselectedObject(e.target.value)
+    }
+  }
 
   return (
     <div>
@@ -314,7 +322,8 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
         </Select>
       </FormControl>
 
-      <FormControl className={classes.formControl}>
+
+{/*       <FormControl className={classes.formControl}>
         <InputLabel id="demo-customized-select-label">Объект</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -334,6 +343,27 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
             <Button variant="contained" className="btn-addWorkShop"> Новый объект </Button>
           </MenuItem>
         </Select>
+      </FormControl> */}
+
+      
+      <FormControl className="inputobject">
+          <Autocomplete
+            id="combo-box-demo"
+            debug
+            onChange={handleChangeObject}
+            onKeyDown={_handleKeyDownObject}
+            onBlur={handleChangeObject}
+            options={
+            selectedWorkshops === '' ?  [] :
+            workshops.filter((item) => item.name === selectedWorkshops)[0].object}
+            getOptionLabel={ (option) => option }
+            style={{
+            width: "45vw"
+              }}
+                renderInput={params => (
+                <TextField {...params} variant="outlined" fullWidth />
+              )}
+          /> 
       </FormControl>
     </div>
   );

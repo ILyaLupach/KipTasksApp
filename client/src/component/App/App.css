@@ -12,3 +12,28 @@
     background-color: #00a4d3;
   }
   
+  .personslist{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding: 60px 20px 70px 20px;
+  }
+  .personDetails{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      width: 75vw;
+  }
+  .personDetails .persotDetails-phone{
+      color: green;
+  }
+  .workShopItem--comment{
+      display: block;
+      width: 98vw;
+  }
+ 
+  .workShopItem--comment:last-child{
+      padding-bottom: 100px;
+  }

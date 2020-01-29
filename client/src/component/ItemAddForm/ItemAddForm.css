@@ -18,3 +18,12 @@
     font-size: 14px;
     text-transform: none;
 }
+.inputobject .MuiAutocomplete-inputRoot{
+    min-height: 42px;
+    max-height: 42px;
+    margin-top: 31px;
+    text-align: center;
+}
+.inputobject .MuiAutocomplete-inputRoot .MuiAutocomplete-input:first-child {
+    padding-top: 5px;
+}

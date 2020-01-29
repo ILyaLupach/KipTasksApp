@@ -8,7 +8,7 @@ import ItemAddForm from "../ItemAddForm/ItemAddForm";
 
 
 import NavTabs from "../NavTabs/NavTabs";
-import Person from "../PersonList/Person";
+import Persons from "../PersonList/Person";
 import Statistics from "../StatisticsList/Statistics";
 import WorkShop from "../Tasks/Tasks";
    
@@ -25,7 +25,7 @@ export default class App extends React.Component {
                         <NavTabs />
 
                         <Route path="/" exact component={WorkShop} />
-                        <Route path="/person" component={Person} />
+                        <Route path="/persons" component={Persons} />
                         <Route path="/statistics" component={Statistics} />
 
                         <Route path="/addTasks" component={ItemAddForm} />
