@@ -1,5 +1,4 @@
-import React from 'react';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import React, { useState, useEffect } from 'react';import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
@@ -9,8 +8,14 @@ import "./TasksItem.css";
 
 
 
-export default function TasksItem({_id, position, object, failure, fix, panel, start, finish, name, updateTasks, deleteItem}) {
+export default function TasksItem({_id, num, position, object, failure, fix, panel, date, start, finish, name, updateTasks, deleteItem, visibleDate}) {
   const [expanded, setExpanded] = React.useState(false);
+
+  let backg = ""
+
+  if (num % 2 == 0) {
+    backg = "even"
+  }
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : true);
@@ -35,8 +40,11 @@ export default function TasksItem({_id, position, object, failure, fix, panel, s
   
 
   return (
+    <>
+    {visibleDate ? <span className="datetitle"> {`${firmatTime(new Date(date).getDate())} / ${firmatTime(new Date(date).getMonth() + 1)} / ${new Date(date).getFullYear()}`} </span> : null}
+  
 
-      <ExpansionPanel className="workShopItem" expanded={expanded === panel} onChange={handleChange(panel)}>
+    <ExpansionPanel className={`workShopItem ${backg}`} expanded={expanded === panel} onChange={handleChange(panel)}>
         <ExpansionPanelSummary
                   aria-controls={`${panel}bh-content`}
                   id={`${panel}bh-header`}
@@ -75,7 +83,8 @@ export default function TasksItem({_id, position, object, failure, fix, panel, s
                   </Button>
                 </DialogActions>
 
-
         </ExpansionPanel>
-      );
+    </>
+      
+  );
 }

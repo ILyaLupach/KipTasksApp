@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
-
+import { Redirect } from 'react-router-dom';
 
 import InputWorkShop from "./InputWorkShop";
 import InputDate from "./InputDate";
@@ -46,6 +46,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
   const [complited, setComplited] = useState(false);
   const [validate, setValidate] = useState(true);
   const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedStart, setSelectedStart] = useState(new Date());
@@ -104,7 +105,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
           setValueFailure('');
           setValueFixed('');
           setTimeout(() => {
-            setComplited(false);
+            setRedirect(true);
           }, 2000);
         } else {
           setError(true)
@@ -120,6 +121,10 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
       }, 2000);
     }
   }
+
+  if(redirect){ 
+    return <Redirect to="/" />
+  };
 
   if(error) {
     return (
@@ -152,6 +157,8 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
     </div>
     )
   }
+  
+
 
   return (
    <MuiPickersUtilsProvider utils={DateFnsUtils}>

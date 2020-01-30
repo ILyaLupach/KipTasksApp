@@ -48,10 +48,12 @@ export default function InputDate({selectedDate, setSelectedDate, selectedStart,
 
         <div className="timeinputtitle">
             <TimeInput
+              style={{ maxWidth: "33vw", margin: 5 }}
               mode='24h'
               value={selectedStart}
               onChange={handleStartChange}/>
             <TimeInput
+              style={{ maxWidth: "33vw", margin: 5 }}
               mode='24h'
               value={selectedFinish}
               onChange={handleFinishChange}

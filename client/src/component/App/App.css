@@ -1,4 +1,4 @@
-#root .MuiFab-primary{
+#root .MuiFab-primary {
     position: fixed;
     right: 10px;
     bottom: 10px;
@@ -8,32 +8,57 @@
     font-size: 50px;
     opacity: 0.8;
 }
-.makeStyles-root-1 .MuiAppBar-colorPrimary{
+
+.makeStyles-root-1 .MuiAppBar-colorPrimary {
     background-color: #00a4d3;
-  }
-  
-  .personslist{
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex-direction: column;
-      padding: 60px 20px 70px 20px;
-  }
-  .personDetails{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      width: 75vw;
-  }
-  .personDetails .persotDetails-phone{
-      color: green;
-  }
-  .workShopItem--comment{
-      display: block;
-      width: 98vw;
-  }
- 
-  .workShopItem--comment:last-child{
-      padding-bottom: 100px;
-  }
+}
+
+.personslist {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 60px 20px 70px 20px;
+}
+
+.personDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 75vw;
+}
+
+.personDetails .persotDetails-phone {
+    color: green;
+}
+
+.workShopItem--comment {
+    display: block;
+    width: 98vw;
+}
+
+.workShopItem--comment:last-child {
+    padding-bottom: 100px;
+}
+
+
+.datetitle{
+    display: block;
+    text-align: center;
+    text-align: center;
+    background-color: #00a5d37a;
+    font-weight: bold;
+}
+.addtaskstittle{
+    width: 100%;
+    display: block;
+    text-align: center;
+    text-align: center;
+    background-color: #00a5d37a;
+    font-weight: 400;
+}
+
+.timeinputtitle{
+    margin: 20px 20px 5px 20px;
+}

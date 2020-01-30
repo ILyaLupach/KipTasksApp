@@ -44,16 +44,26 @@
     font-weight: 900;
     margin-left: 10px;
 }
-.MuiExpansionPanel-rounded:last-child{
-    border-bottom: #00a4d3 solid 1px;
-}
+
 
 .workshoplist{
-    max-height: 100vh;
-    padding-top: 60px;
-    overflow-y: scroll;
-    padding-bottom: 40px; /* прокрутка по вертикали */
+    height: max-content;
+    margin-top: 60px;
+    margin-bottom: 40px; 
 }
 #root .MuiExpansionPanelSummary-root{
     padding: 0;
+}
+.workshoplist .even{
+    background-color: #82c8db23;
+}
+#root .addTaskButton{
+    position: fixed;
+    bottom : 0px;
+    left: 0;
+    width: 100%;
+    background: #00a5d3;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 0;
 }
