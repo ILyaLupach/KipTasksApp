@@ -95,12 +95,12 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
   const allTasks = tasks;
 
-  useEffect(() => {
+/*   useEffect(() => {
     updateWorkshops();
     setSearchQuery('');
     setFilter("Все");
   }, []);
-
+ */
 
   const updateWorkshops = () => {
     serv.getAllWorkshops()
@@ -115,7 +115,10 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
   const handleClickOpen = () => {
     setOpen(true);
+    updateWorkshops();
+    setSearchQuery('');
     setValue(0);
+    updateWorkshops()
   };
 
   const handleClickOk = (tasks) => {

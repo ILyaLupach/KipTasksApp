@@ -18,12 +18,10 @@ function Persons ({persons, getAllPersons}) {
 
     
   const updatePersons = () => {
-    setTimeout(() => {
-      serv.getAllPersons()
+    serv.getAllPersons()
       .then(res => {
         getAllPersons(res)
     }) 
-    }, 1000);
   }
 
 
