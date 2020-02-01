@@ -14,7 +14,7 @@ export default class ServerKip {
 
 
     getAllTasks = async () => {
-        const tasks = this.getResource("/tasks")
+        const tasks = await this.getResource("/tasks")
             .then((res) => {
                 return  res
             })
@@ -30,7 +30,7 @@ export default class ServerKip {
     };
 
     getAllPersons = async () => {
-        const persons = this.getResource("/persons")
+        const persons = await this.getResource("/persons")
             .then((res) => {
                 return  res
             })
