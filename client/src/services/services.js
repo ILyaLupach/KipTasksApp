@@ -8,6 +8,7 @@ export default class ServerKip {
             }
             return response;
         }).then(response => response.json())
+        .catch(err => console.log( "----------" ," ",err))
         return await res;
     };
 
