@@ -24,7 +24,7 @@ export default class App extends React.Component {
                         <NavTabs />
 
                         <Route path="/" exact component={WorkShop} />
-                        <Route path="/persons" component={Persons} />
+                        <Route path="/persons" exact component={Persons} />
                         <Route path="/addTasks" component={ItemAddForm} />
 
                 </Router>

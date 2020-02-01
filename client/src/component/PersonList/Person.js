@@ -11,17 +11,20 @@ import {getAllPersons}  from "../../actions";
 function Persons ({persons, getAllPersons}) {
 
   const serv = new ServerKip();
-  const updatePersons = () => {
-    serv.getAllPersons()
-      .then(res => {
-        getAllPersons(res)
-    }) 
-  }
 
   useEffect(() => {
     updatePersons()
   }, []);
 
+    
+  const updatePersons = () => {
+    setTimeout(() => {
+      serv.getAllPersons()
+      .then(res => {
+        getAllPersons(res)
+    }) 
+    }, 1000);
+  }
 
 
     const allPersons = persons.persons;
