@@ -115,14 +115,17 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
   const handleClickOpen = () => {
     setOpen(true);
+    setValue(0);
   };
 
   const handleClickOk = (tasks) => {
     setOpen(false);
+    setValue(0);
   };
 
 
   const resetFilter = () => {
+    setValue(0);
     setSearchQuery('');
     setFilter("Все");
     setOpen(false);
@@ -142,7 +145,7 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
         >
           <Tab icon={<Link to="/" >  <MenuBookIcon style={{ fontSize: 40 }} /></Link>} aria-label="workshop" />
           <Tab icon={<Link to="/persons"><AccountBoxIcon style={{ fontSize: 40 }} /></Link>} aria-label="person" />
-          <Tab icon={<LocationSearchingSharpIcon onClick={handleClickOpen} style={{ fontSize: 40, paddingTop: 2 }} />} aria-label="search" />
+          <Tab icon={<Link to="/"><LocationSearchingSharpIcon onClick={handleClickOpen} style={{ fontSize: 40, paddingTop: 2 }}/></Link>} aria-label="workshop" />
         </Tabs>
 
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={resetFilter}>
