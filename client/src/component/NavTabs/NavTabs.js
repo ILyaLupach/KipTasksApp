@@ -68,7 +68,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     maxWidth: '100%',
-    backgroundColor: theme.palette.background.paper,
+    width: "100vw",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    zIndex:20,
+    backgroundColor: "#00a4d3",
   },
   popup: {
     '& > *': {
@@ -126,8 +131,8 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+
+      <AppBar className={classes.root} position="static">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -175,10 +180,9 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
         </DialogActions>
       </Dialog>
-      
+            {redirect ? <Redirect to="/" /> : ""}
       </AppBar>
-      {redirect ? <Redirect to="/" /> : ""}
-    </div>
+
   );
 }
 
