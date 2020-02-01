@@ -13,117 +13,6 @@ import Button from '@material-ui/core/Button';
 
 
 
-const ArrWorkShops = [
-    {
-        object: [
-            "выжимная",
-            "грильяж",
-            "minipack",
-            "птичка",
-            "рецептурка",
-            "патока",
-            "карамельная линия",
-            "тп16",
-            "весовой дозатор",
-            "завертка выжимная",
-            "завертка карамельная"
-        ],
-        _id: "5e297dc0bcc72c1938b7b622",
-        name: "1й конфетный",
-    },
-    {
-        object: [
-            "156 склад",
-            "Chepi",
-            "Chocotech глазировка",
-            "Dinnisen",
-            "Mogul",
-            "Sollich(Взбивная)",
-            "Вафельная линия",
-            "Вафельная печь",
-            "Взбивная",
-            "Завертка Mogul",
-            "Завертка PFM",
-            "Завертка вафельная",
-            "Завертка карера",
-            "Минипак",
-            "Паточная",
-            "Рецептурка 2й этаж",
-            "Сырьевая (сахар, патока)",
-            "Упаковка Ilapak",
-            "Холодный штамп (завертка)",
-            "Холодный штамп (кухня)",
-            "Yamato",
-            "Кухня взбивная"
-        ],
-        _id: "5e298128bcc72c1938b7b623",
-        name: "2й конфетный",
-    },
-    {
-        object: [
-            "2 этаж темперирующая машина",
-            "4 этаж принтер",
-            "Варочное отделение",
-            "Вафельная печь(старая)",
-            "Выжимная линия",
-            "Глазировка Loveras",
-            "Завёртка выжимная",
-            "Завертка столичная",
-            "Размазка Олега",
-            "Рецептурка. Миланжора",
-            "Тележка Комаева",
-            "Турецкая вафля",
-            "Фасовка",
-            "Глазировка MF Hamburg"
-        ],
-        _id: "5e298179bcc72c1938b7b624",
-        name: "3й конфетный",
-    },
-    {
-        object: [
-            "315 линия",
-            "OneShot",
-            "бисерка",
-            "Двухвалка",
-            "завертка 50 гр",
-            "Завёртка OneShot",
-            "Какао порошок",
-            "Какао-пресс",
-            "Конвейер",
-            "конш 1",
-            "конш 2",
-            "конш 4",
-            "конш 5",
-            "минипак",
-            "Обжарка",
-            "Президентский шоколад",
-            "Пятивалка",
-            "Рецептурка",
-            "Рецептурка. 2 этаж",
-            "конш 6",
-            "теплопункт",
-            "операторская"
-        ],
-        _id: "5e2981b1bcc72c1938b7b625",
-        name: "Старый шоколадный",
-    },
-    {
-        object: [
-            "Jensen",
-            "Jensen конш начинки",
-            "Jensen распред конвеер",
-            "ShowBox",
-            "Емкость с начинкой(2т)",
-            "Завёртка Jensen",
-            "Завёртка Jensen LoeshPack",
-            "Конш",
-            "Мойка форм"
-        ],
-        _id: "5e2981cdbcc72c1938b7b626",
-        name: "Новый шоколадный",
-    }
-]
-
 
 const BootstrapInput = withStyles(theme => ({
   root: {
@@ -170,122 +59,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, selectedObject, setselectedObject}) {
+export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, setselectedObject, workshops}) {
   const classes = useStyles();
-
-  const ArrWorkShops = [
-    {
-        object: [
-            "выжимная",
-            "грильяж",
-            "minipack",
-            "птичка",
-            "рецептурка",
-            "патока",
-            "карамельная линия",
-            "тп16",
-            "весовой дозатор",
-            "завертка выжимная",
-            "завертка карамельная"
-        ],
-        _id: "5e297dc0bcc72c1938b7b622",
-        name: "1й конфетный",
-    },
-    {
-        object: [
-            "156 склад",
-            "Chepi",
-            "Chocotech глазировка",
-            "Dinnisen",
-            "Mogul",
-            "Sollich(Взбивная)",
-            "Вафельная линия",
-            "Вафельная печь",
-            "Взбивная",
-            "Завертка Mogul",
-            "Завертка PFM",
-            "Завертка вафельная",
-            "Завертка карера",
-            "Минипак",
-            "Паточная",
-            "Рецептурка 2й этаж",
-            "Сырьевая (сахар, патока)",
-            "Упаковка Ilapak",
-            "Холодный штамп (завертка)",
-            "Холодный штамп (кухня)",
-            "Yamato",
-            "Кухня взбивная"
-        ],
-        _id: "5e298128bcc72c1938b7b623",
-        name: "2й конфетный",
-    },
-    {
-        object: [
-            "2 этаж темперирующая машина",
-            "4 этаж принтер",
-            "Варочное отделение",
-            "Вафельная печь(старая)",
-            "Выжимная линия",
-            "Глазировка Loveras",
-            "Завёртка выжимная",
-            "Завертка столичная",
-            "Размазка Олега",
-            "Рецептурка. Миланжора",
-            "Тележка Комаева",
-            "Турецкая вафля",
-            "Фасовка",
-            "Глазировка MF Hamburg"
-        ],
-        _id: "5e298179bcc72c1938b7b624",
-        name: "3й конфетный",
-    },
-    {
-        object: [
-            "315 линия",
-            "OneShot",
-            "бисерка",
-            "Двухвалка",
-            "завертка 50 гр",
-            "Завёртка OneShot",
-            "Какао порошок",
-            "Какао-пресс",
-            "Конвейер",
-            "конш 1",
-            "конш 2",
-            "конш 4",
-            "конш 5",
-            "минипак",
-            "Обжарка",
-            "Президентский шоколад",
-            "Пятивалка",
-            "Рецептурка",
-            "Рецептурка. 2 этаж",
-            "конш 6",
-            "теплопункт",
-            "операторская"
-        ],
-        _id: "5e2981b1bcc72c1938b7b625",
-        name: "Старый шоколадный",
-    },
-    {
-        object: [
-            "Jensen",
-            "Jensen конш начинки",
-            "Jensen распред конвеер",
-            "ShowBox",
-            "Емкость с начинкой(2т)",
-            "Завёртка Jensen",
-            "Завёртка Jensen LoeshPack",
-            "Конш",
-            "Мойка форм"
-        ],
-        _id: "5e2981cdbcc72c1938b7b626",
-        name: "Новый шоколадный",
-    }
-]
-
-  const [workshops, setWorkshops] = React.useState(ArrWorkShops);
-
 
   const handleChangeWorkshops = event => {
     setSelectedWorkshops(event.target.value); 
@@ -301,8 +76,12 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
     }
   }
 
+
+
   return (
-    <div>
+   <>
+    { !workshops ? <h4>Loading</h4> :
+    ( <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-customized-select-label">Цех</InputLabel>
         <Select
@@ -323,29 +102,6 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
       </FormControl>
 
 
-{/*       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-customized-select-label">Объект</InputLabel>
-        <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
-          value={selectedObject}
-          onChange={handleChangeObject}
-          input={<BootstrapInput />}
-        >
-
-        {
-          selectedWorkshops === ''
-            ? <MenuItem value=""> <em>None</em> </MenuItem> 
-            : workshops.filter((item) => item.name === selectedWorkshops)[0]
-          .object.map((item, i) => (<MenuItem value={item} key={`${selectedWorkshops}object${i}`}>{item}</MenuItem>)) 
-        }
-          <MenuItem value="">
-            <Button variant="contained" className="btn-addWorkShop"> Новый объект </Button>
-          </MenuItem>
-        </Select>
-      </FormControl> */}
-
-      
       <FormControl className="inputobject">
           <Autocomplete
             id="combo-box-demo"
@@ -355,8 +111,8 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
             onBlur={handleChangeObject}
             options={
             selectedWorkshops === '' ?  [] :
-            workshops.filter((item) => item.name === selectedWorkshops)[0].object}
-            getOptionLabel={ (option) => option }
+            workshops.filter((item) => item.name === selectedWorkshops)[0].object.map(str => str[0].toUpperCase() + str.slice(1)).sort() }
+            getOptionLabel={ (option) => option}
             style={{
             width: "45vw"
               }}
@@ -365,6 +121,8 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
               )}
           /> 
       </FormControl>
-    </div>
+    </div>)}
+   </>
   );
 }
+

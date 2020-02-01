@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {connect} from "react-redux"
 import ServerKip from "../../services/services";
-import {getAllTasks}  from "../../actions";
 import PersonsItem from "./PersonsItem"
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import { Link } from 'react-router-dom';
+
 import AddNewPerson from './AddNewPerson';
 
 import {getAllPersons}  from "../../actions";
@@ -14,17 +11,18 @@ import {getAllPersons}  from "../../actions";
 function Persons ({persons, getAllPersons}) {
 
   const serv = new ServerKip();
-
-  useEffect(() => {
-    updatePersons()
-  }, []);
-
   const updatePersons = () => {
     serv.getAllPersons()
       .then(res => {
         getAllPersons(res)
     }) 
   }
+
+  useEffect(() => {
+    updatePersons()
+  }, []);
+
+
 
     const allPersons = persons.persons;
 

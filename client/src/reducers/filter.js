@@ -1,22 +1,20 @@
 const initialState = {
-    loading: true,
-    tasks: null
+    searchQuery: '',
+    filterBy: "Все"
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case "GET_ALL_TASKS":
+        case 'SET_QUERY':
             return {
                 ...state,
-                tasks: action.payload
+                searchQuery: action.payload
             };
-
-        case "LOADING_TASKS":
+        case 'SET_FILTER':
             return {
                 ...state,
-                loading: action.payload,
+                filterBy: action.payload
             };
-
         default:
             return state;
     }

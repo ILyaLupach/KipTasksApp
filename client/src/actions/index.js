@@ -2,6 +2,10 @@ export const getAllTasks = (tasks) => ({
     type: "GET_ALL_TASKS",
     payload: tasks
 })
+export const loadingTasks = (bool) => ({
+    type: "LOADING_TASKS",
+    payload: bool
+})
 
 export const getAllWorkshops = (workshops) => ({
     type: "GET_ALL_WORKSHOPS",
@@ -13,3 +17,11 @@ export const getAllPersons = (persons) => ({
     payload: persons
 })
 
+export const setFilter = (activeItem) => ({
+    type: "SET_FILTER",
+    payload: activeItem
+})
+export const setSearchQuery = (value) => ({
+    type: "SET_QUERY",
+    payload: value
+})

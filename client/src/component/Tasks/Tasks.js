@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {connect} from "react-redux"
 import ServerKip from "../../services/services";
-import {getAllTasks}  from "../../actions";
+import {getAllTasks, loadingTasks}  from "../../actions";
 import TasksItem from "../TasksItem/TasksItem"
-import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
-import Dialog from '@material-ui/core/Dialog';
-import { makeStyles } from '@material-ui/core/styles';
 import lodash from "lodash";
 import "./Tasks.css";
 
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    position: "fixed",
-    bottom: -10,
-    left: -10,
-    margin: theme.spacing(1),
-    width: "102%",
-    backgroundColor: "#00a5d3",
-    fontSize: 16,
-    padding: 8,
-    margun: 0
-  }
-}));
-
-
-
+import Preloader from "../Preloader/Preloader"
+import sortBy from "../../secondaryFunctions/sortBy"
 
 
 class Tasks extends React.Component  {
@@ -36,26 +17,34 @@ class Tasks extends React.Component  {
 
   componentDidMount() {
     this.updateTasks();
+    this.scrollToBottom();
   }
 
   componentDidUpdate() {
-    this.scrollToBottom()
+    this.scrollToBottom();
+  }
+
+  componentWillUnmount() {
+    this.props.loadingTasks(true);
   }
   
     serv = new ServerKip();
 
 
     updateTasks = () => {
-    this.serv.getAllTasks()
+      this.props.loadingTasks(true);
+      this.serv.getAllTasks()
       .then(res => {
-        this.props.getAllTasks(res)
-    }) 
+        this.props.getAllTasks(res);
+        setTimeout(() => {
+          this.props.loadingTasks(false);
+        }, 1000);
+    });
   }
    myRef = React.createRef();
 
    scrollToBottom = () => {
     if(this.myRef.current){
-      console.log(this.myRef.current.scrollHeight)
       this.myRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }
@@ -65,17 +54,22 @@ class Tasks extends React.Component  {
 render() {
 
 
-  const  tasks = lodash.sortBy(this.props.store.tasks,  ["date"]) ;
+  const  tasks = sortBy(lodash.sortBy(this.props.store.tasks,  ["date"]), this.props.filterBy, this.props.searchQuery) ;
+
   
   return (
     <>
-      <div className="workshoplist" >{
+      <div className="workshoplist" >
+        
+        <Preloader open={this.props.store.loading}/>
+
+        {
           (
             !tasks ? (<h2>Loading...</h2>) : 
             tasks.map((item, i, arr) => {
                 let visibleDate = true;
                 if(i > 0) {
-                  if(new Date(item.date).getDate() == new Date(arr[i-1].date).getDate()) visibleDate=false ;
+                  if(new Date(item.date).getDate() === new Date(arr[i-1].date).getDate()) visibleDate=false ;
                   else visibleDate=true;
                 }
 
@@ -106,12 +100,15 @@ render() {
 }
   }
 
-const mapStateToProps = ({tasksReducer}) => ({
-  store: tasksReducer
+const mapStateToProps = ({tasksReducer, filterReducers}) => ({
+  store: tasksReducer,
+  filterBy: filterReducers.filterBy,
+  searchQuery: filterReducers.searchQuery
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllTasks: (tasks) => dispatch(getAllTasks(tasks)) 
+  getAllTasks: (tasks) => dispatch(getAllTasks(tasks)),
+  loadingTasks:  (bool) => dispatch(loadingTasks(bool))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

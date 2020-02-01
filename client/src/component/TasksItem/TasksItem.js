@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import React from 'react';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import "./TasksItem.css";
-
+import EditTasks from "./EditTasks";
 
 
 export default function TasksItem({_id, num, position, object, failure, fix, panel, date, start, finish, name, updateTasks, deleteItem, visibleDate}) {
@@ -13,7 +14,7 @@ export default function TasksItem({_id, num, position, object, failure, fix, pan
 
   let backg = ""
 
-  if (num % 2 == 0) {
+  if (num % 2 === 0) {
     backg = "even"
   }
 
@@ -75,9 +76,12 @@ export default function TasksItem({_id, num, position, object, failure, fix, pan
                   </Typography>
                 </ExpansionPanelDetails>
                 <DialogActions>
-                  <Button   /* onClick={editItem} */   color="primary">
-                    <h5>редактировать</h5>
-                  </Button>
+                  <EditTasks 
+                    updateTasks={updateTasks}
+                    id={_id} position={position} name={name}
+                    object={object} failure={failure} 
+                    fix={fix} start = {start} finish={finish}
+                  />
                   <Button   onClick={deleteTasks}   color="primary">
                     <h5>удалить</h5>
                   </Button>

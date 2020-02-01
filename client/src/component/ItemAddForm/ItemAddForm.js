@@ -43,6 +43,9 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
   const serv = new ServerKip();
   const classes = useStyles();
 
+
+//Лучше заменить всё одним объектом, но мне лень переделывать -->
+
   const [complited, setComplited] = useState(false);
   const [validate, setValidate] = useState(true);
   const [error, setError] = useState(false);
@@ -61,7 +64,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
   const [valueFixed, setValueFixed] = useState("");
 
   const allPersons = persons.persons;
-  const allWorkshops = workshops.workshopsl
+  const allWorkshops = workshops.workshops;
 
   useEffect(() => {
     updateWorkshops();
@@ -94,7 +97,24 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
       fix: valueFixed
   }
 
+  if(allWorkshops.filter(item => item.name === body.position)[0].object.filter(item => item === body.object).length === 0) {
+
+    const obj = allWorkshops.filter(item => item.name === body.position)[0].object;
+    const newObj = [...obj, body.object];
+    serv.updateData("workshops" , allWorkshops.filter(item => item.name === body.position)[0]._id, {object: newObj})
+  }
+
+
+
   if( body.name !== [] && body.name.length !== 0 &&  body.position !== ''&&  body.object !== '' &&  body.failure !== '' &&  body.fix !== ''){
+
+    if(allWorkshops.filter(item => item.name === body.position)[0].object.filter(item => item === body.object).length === 0) {
+
+      const obj = allWorkshops.filter(item => item.name === body.position)[0].object;
+      const newObj = [...obj, body.object];
+      serv.updateData("workshops" , allWorkshops.filter(item => item.name === body.position)[0]._id, {object: newObj})
+    }
+
     serv.taskPushTasks(body)
       .then(res => {
         if(res.ok) {
@@ -183,6 +203,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
         <span className="addtaskstittle"> Цех и место поломки </span>
 
         <InputWorkShop 
+          getAllWorkshops={getAllWorkshops}
           workshops={allWorkshops}
           selectedWorkshops={selectedWorkshops}
           setSelectedWorkshops={setSelectedWorkshops}
@@ -217,11 +238,10 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
 const mapStateToProps = ({workshopsReducers, personsReducers}) => ({
   workshops: workshopsReducers,
   persons: personsReducers,
-
 })
 
 const mapDispatchToProps = dispatch => ({
   getAllWorkshops: (workshops) => dispatch(getAllWorkshops(workshops)),
-  getAllPersons: (persons) => dispatch(getAllPersons(persons))   
+  getAllPersons: (persons) => dispatch(getAllPersons(persons)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ItemAddForm)

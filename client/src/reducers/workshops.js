@@ -1,5 +1,5 @@
 const initialState = {
-    workshop: null,
+    workshops: null,
 }
 
 export default (state = initialState, action) => {
@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
         case "GET_ALL_WORKSHOPS":
             return {
                 ...state,
-                workshop: action.payload
+                workshops: action.payload
             };
 
         default:

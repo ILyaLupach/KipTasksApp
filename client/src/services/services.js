@@ -70,5 +70,16 @@ export default class ServerKip {
         })
     }
 
-    
+
+    updateData = ( url, id, data) => {
+        fetch(`/${url}/${id}`, {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        }
+
 }

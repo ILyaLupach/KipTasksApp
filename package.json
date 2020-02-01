@@ -16,6 +16,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
+    "eslint-plugin-react-hooks": "0.0.0-241c4467e",
     "express": "^4.17.1",
     "material-ui-time-picker": "^1.3.0",
     "mongoose": "^5.8.7",
