@@ -7,18 +7,19 @@ const workshop = require("./workshop");
 
 ////////////   person   ////////////
 router.get("/persons", (req, res)=>{
-  person.find({})
+  person.find()
     .then((person) => {
         res.send(person);
     })
 });
 
-router.post("/persons", (req, res)=>{
-  person.create(req.body)
-    .then((person) => {
-        res.send(person)
+router.get("/tasks", (req, res)=>{
+  tasks.find()
+    .then((task) => {
+        res.send(task)
     })
 });
+
 
 router.put("/persons/:id", (req, res)=>{
   person.findByIdAndUpdate({_id: req.params.id}, req.body)

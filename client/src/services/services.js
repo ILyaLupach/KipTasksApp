@@ -33,7 +33,7 @@ export default class ServerKip {
         const persons = await this.getResource("/persons")
             .then((res) => {
                 return  res
-            })
+            }).catch(err => console.log( "----------" ," ",err))
         return await persons;
     };
 
