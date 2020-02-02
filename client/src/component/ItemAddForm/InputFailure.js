@@ -47,7 +47,7 @@ export default function InputFailure({valueFailure, setValueFailure, valueFixed,
             id="standard-multiline-flexible"
             label="Решение"
             multiline
-            rows="4"
+            rows="3"
             rowsMax="6"
             value={valueFixed}
             onKeyDown={_handleKeyDownFixed}

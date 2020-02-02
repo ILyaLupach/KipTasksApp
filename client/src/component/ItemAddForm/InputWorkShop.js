@@ -91,16 +91,9 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
           onChange={handleChangeWorkshops}
           input={<BootstrapInput />}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
         {workshops.map((item) => (<MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>)) }
-          <MenuItem value="">
-            <Button variant="contained" className="btn-addWorkShop"> Добавить цех </Button>
-          </MenuItem>
         </Select>
       </FormControl>
-
 
       <FormControl className="inputobject">
           <Autocomplete
@@ -121,7 +114,9 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
               )}
           /> 
       </FormControl>
+
     </div>)}
+
    </>
   );
 }

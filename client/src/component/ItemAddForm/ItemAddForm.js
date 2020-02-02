@@ -15,6 +15,7 @@ import InputWorkShop from "./InputWorkShop";
 import InputDate from "./InputDate";
 import InputName from "./InputName";
 import InputFailure from "./InputFailure";
+import AddFile from "./AddFile";
 
 
 import ServerKip from "../../services/services";
@@ -142,6 +143,8 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
     }
   }
 
+
+
   if(redirect){ 
     return <Redirect to="/" />
   };
@@ -218,6 +221,8 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
           valueFixed={valueFixed}
           setValueFixed={setValueFixed}
         />
+
+        {/* <AddFile /> */}
 
         <Button
           variant="contained"

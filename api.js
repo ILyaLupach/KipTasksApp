@@ -88,6 +88,8 @@ router.post("/workshops", (req, res)=>{
     })
 });
 
+
+
 router.put("/workshops/:id", (req, res)=>{
   workshop.findByIdAndUpdate({_id: req.params.id}, req.body)
     .then(() => {
@@ -98,5 +100,11 @@ router.put("/workshops/:id", (req, res)=>{
     })
 });
 
+router.delete("/workshops/:id", (req, res)=>{
+  workshop.deleteOne({_id: req.params.id})
+    .then((workshop) => {
+        res.send(workshop)
+    })
+});
 
 module.exports = router;
