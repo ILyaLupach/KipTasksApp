@@ -5,7 +5,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
-
+import EditPerson from "./EditPerson";
+import DialogActions from '@material-ui/core/DialogActions';
 
 
 export default function PersonsItem({name, surname, phone, position, panel, _id, deleteItem, updatePersons}) {
@@ -43,10 +44,18 @@ export default function PersonsItem({name, surname, phone, position, panel, _id,
                     <span>{`Должность:  ${position}`}</span>
                 </div>
 
-            </ExpansionPanelDetails>
-            <Button  onClick={deletePerson}  color="primary">
-                  <h6>удалить</h6>
-            </Button>
+          </ExpansionPanelDetails>
+            <DialogActions>
+              <EditPerson   
+                  name={name} surname={surname} phone={phone}
+                  position={position} id={_id}
+                  updatePersons={updatePersons}
+              />
+
+              <Button  onClick={deletePerson}  color="primary">
+                    <h5>удалить</h5>
+              </Button>
+            </DialogActions>
         </ExpansionPanel>
       </>
   );

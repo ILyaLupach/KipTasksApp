@@ -28,6 +28,8 @@ export default class App extends React.Component {
                         <Route path="/addTasks" component={ItemAddForm} />
 
                 </Router>
+
+                <div className="backgroundPage"></div>
             </Provider>
         )
     }
