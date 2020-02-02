@@ -13,6 +13,13 @@ router.get("/persons", (req, res)=>{
     })
 });
 
+router.post("/persons", (req, res)=>{
+  person.create(req.body)
+    .then((pers) => {
+        res.send(pers)
+    })
+});
+
 
 router.put("/persons/:id", (req, res)=>{
   person.findByIdAndUpdate({_id: req.params.id}, req.body)

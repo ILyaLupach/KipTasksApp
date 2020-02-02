@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, setSearchQuery, workshops, getAllWorkshops, getAllTasks}) {
+function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, setSearchQuery, workshops, getAllWorkshops}) {
 
   const serv = new ServerKip();
 
