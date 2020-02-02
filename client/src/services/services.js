@@ -3,6 +3,7 @@ export default class ServerKip {
     getResource = async (url) => {
         const res = await fetch(url)
         .then(response => {
+            console.log(response);
             if(!response.ok) {
                 throw new Error(response.statusText);
             }

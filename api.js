@@ -13,13 +13,6 @@ router.get("/persons", (req, res)=>{
     })
 });
 
-router.get("/tasks", (req, res)=>{
-  tasks.find()
-    .then((task) => {
-        res.send(task)
-    })
-});
-
 
 router.put("/persons/:id", (req, res)=>{
   person.findByIdAndUpdate({_id: req.params.id}, req.body)
