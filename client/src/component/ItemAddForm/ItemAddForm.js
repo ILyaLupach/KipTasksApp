@@ -15,12 +15,10 @@ import InputWorkShop from "./InputWorkShop";
 import InputDate from "./InputDate";
 import InputName from "./InputName";
 import InputFailure from "./InputFailure";
-import AddFile from "./AddFile";
 
 
 import ServerKip from "../../services/services";
 import {getAllPersons, getAllWorkshops}  from "../../actions";
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -221,8 +219,6 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
           valueFixed={valueFixed}
           setValueFixed={setValueFixed}
         />
-
-        {/* <AddFile /> */}
 
         <Button
           variant="contained"

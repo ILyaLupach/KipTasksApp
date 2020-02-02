@@ -83,12 +83,4 @@ export default class ServerKip {
         })
     }
 
-     uploadFile = async (data) => {
-        const person = await fetch("/upload", {
-            method: "POST",
-            body: data
-            })
-
-        return await person
-    } 
 }
