@@ -8,38 +8,46 @@ import AddNewPerson from './AddNewPerson';
 import {getAllPersons}  from "../../actions";
 
 
-function Persons ({persons, getAllPersons}) {
+class Persons extends React.Component {
 
-  const serv = new ServerKip();
-
+  serv = new ServerKip();
+/* 
   useEffect(() => {
     updatePersons()
   }, []);
+     */
 
-    
-  const updatePersons = () => {
-    serv.getAllPersons()
+  componentDidMount() {
+    this.updatePersons()
+  }
+     
+  updatePersons = () => {
+    this.serv.getAllPersons()
       .then(res => {
-        getAllPersons(res)
+        this.props.getAllPersons(res)
     }) 
   }
 
 
-    const allPersons = persons.persons;
+
+render () {
+
+  const allPersons = this.props.persons.persons;
 
     return (
-        <div className="personslist">
-            {(
-              !allPersons ? (<h2>Loading...</h2>) : 
-              allPersons.map((item, i) => <PersonsItem 
-                key={item._id}
-                updatePersons={updatePersons} 
-                deleteItem={serv.deleteItem} 
-                panel={`panel${i}`} {...item}/>)
-            )}
-            <AddNewPerson updatePersons={updatePersons}/>
-        </div>
-    )
+          <div className="personslist">
+              {(
+                !allPersons ? (<h2>Loading...</h2>) : 
+                allPersons.map((item, i) => <PersonsItem 
+                  key={item._id}
+                  updatePersons={this.updatePersons} 
+                  deleteItem={this.serv.deleteItem} 
+                  panel={`panel${i}`} {...item}/>)
+              )}
+              <AddNewPerson updatePersons={this.updatePersons}/>
+          </div>
+      )
+    }
   }
 
 const mapStateToProps = ({personsReducers}) => ({
