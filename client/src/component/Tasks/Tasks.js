@@ -73,9 +73,11 @@ render() {
                   else visibleDate=true;
                 }
 
+
               return (<TasksItem 
                 key={item._id} 
                 num={i}
+                mark={ item.mark ? item.mark : false }
                 updateTasks={this.updateTasks} 
                 deleteItem={this.serv.deleteItem}  
                 panel={`panel${i}`} {...item}

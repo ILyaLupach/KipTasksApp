@@ -9,7 +9,8 @@ const taskSchema = new Schema({
     position: {type: String,required: true},
     object: {type: String,required: true},
     failure: {type: String,required: true},
-    fix: {type: String,required: true}
+    fix: {type: String,required: true},
+    mark: Boolean
 });
 
 const tasks = mongoose.model("tasks", taskSchema);
