@@ -8,65 +8,70 @@ import { Link } from 'react-router-dom';
 import lodash from "lodash";
 import "./Tasks.css";
 
-import Preloader from "../Preloader/Preloader"
-import sortBy from "../../secondaryFunctions/sortBy"
+import Preloader from "../Preloader/Preloader";
+import sortBy from "../../secondaryFunctions/sortBy";
+import sizeArr from "../../secondaryFunctions/sizeArr";
 
 
 class Tasks extends React.Component  {
   
+  serv = new ServerKip();
 
   componentDidMount() {
     this.updateTasks();
-    this.scrollToBottom();
   }
 
-  componentDidUpdate() {
-    this.scrollToBottom();
+  componentDidUpdate(prevProps) {
+    if(prevProps != this.props){
+      this.scrollToBottom();
+    }
   }
 
   componentWillUnmount() {
     this.props.loadingTasks(true);
   }
   
-    serv = new ServerKip();
+  state={ size: 100 }
 
 
-    updateTasks = () => {
-      this.props.loadingTasks(true);
-      this.serv.getAllTasks()
-      .then(res => {
-        this.props.getAllTasks(res);
-        setTimeout(() => {
-          this.props.loadingTasks(false);
-        }, 1000);
+  updateTasks = () => {
+    this.props.loadingTasks(true);
+    this.serv.getAllTasks()
+    .then(res => {
+      this.props.getAllTasks(res);
+      setTimeout(() => {
+        this.props.loadingTasks(false);
+      }, 1000);
     });
   }
-   myRef = React.createRef();
+  myRef = React.createRef();
 
-   scrollToBottom = () => {
+  scrollToBottom = () => {
     if(this.myRef.current){
       this.myRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }
 
+  sizeUp = () => {
+    this.setState(({size}) => this.state.size = size+50);
+    console.log(this.state.size);
+  }
 
+  render() {
 
-render() {
-
-
-  const  tasks = sortBy(lodash.sortBy(this.props.store.tasks,  ["date"]), this.props.filterBy, this.props.searchQuery) ;
-
-  
-  return (
-    <>
+    const  tasks = sortBy(lodash.sortBy(this.props.store.tasks,  ["date"]), this.props.filterBy, this.props.searchQuery) ;
+    sizeArr(tasks, this.state.size)
+    
+    return (
+      <>
       <div className="workshoplist" >
-        
-        <Preloader open={this.props.store.loading}/>
+{/*         <button onClick={this.sizeUp}>+1</button>
+ */}        <Preloader open={this.props.store.loading}/>
 
         {
           (
             !tasks ? (<h2>Loading...</h2>) : 
-            tasks.map((item, i, arr) => {
+            sizeArr(tasks).map((item, i, arr) => {
                 let visibleDate = true;
                 if(i > 0) {
                   if(new Date(item.date).getDate() === new Date(arr[i-1].date).getDate()) visibleDate=false ;

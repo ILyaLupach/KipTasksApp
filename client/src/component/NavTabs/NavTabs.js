@@ -97,8 +97,8 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
 
   useEffect(() => {
     updateWorkshops();
-    setSearchQuery('');
-    setFilter("Все");
+/*     setSearchQuery('');
+    setFilter("Все"); */
   }, []);
 
 
