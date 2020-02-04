@@ -146,7 +146,7 @@ function ScrollableTabsButtonPrevent({searchQuery, filterBy, tasks, setFilter, s
           scrollButtons="off"
           aria-label="scrollable prevent tabs example"
         >
-          <Tab icon={<Link to="/">  <MenuBookIcon style={{ fontSize: 40 }} /></Link>} aria-label="workshop" />
+          <Tab icon={<Link to="/"> <MenuBookIcon style={{ fontSize: 40 }} /></Link>} aria-label="tasks" />
           <Tab icon={<Link to="/personlist"><AccountBoxIcon style={{ fontSize: 40 }} /></Link>} aria-label="person" />
           <Tab icon={<Link to="/"><LocationSearchingSharpIcon onClick={handleClickOpen} style={{ fontSize: 40, paddingTop: 2 }}/></Link>} aria-label="workshop" />
         </Tabs>

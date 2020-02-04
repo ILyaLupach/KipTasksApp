@@ -10,7 +10,8 @@ import ItemAddForm from "../ItemAddForm/ItemAddForm";
 import NavTabs from "../NavTabs/NavTabs";
 import Persons from "../PersonList/Person";
 import WorkShop from "../Tasks/Tasks";
-   
+import PrintList from "../PrintList/PrintList" ;  
+
 
 export default class App extends React.Component {
 
@@ -20,13 +21,15 @@ export default class App extends React.Component {
         return(
             <Provider store={store}>
                 <Router>
-
                         <NavTabs />
 
                         <Route path="/" exact component={WorkShop} />
                         <Route path="/personlist" exact component={Persons} />
                         <Route path="/addTasks" component={ItemAddForm} />
 
+                </Router>
+                <Router>
+                    <Route path="/printlist" component={PrintList} />
                 </Router>
 
                 <div className="backgroundPage"></div>
