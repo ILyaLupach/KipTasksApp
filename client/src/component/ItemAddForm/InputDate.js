@@ -42,7 +42,7 @@ export default function InputDate({selectedDate, setSelectedDate, selectedStart,
         />
 
         <span className="addtaskstittle">
-          Время начала и завершения вызова
+          Время начала и завершения вызова:
         </span>
 
 

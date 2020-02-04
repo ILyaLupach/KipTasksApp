@@ -9,11 +9,6 @@ import InputBase from '@material-ui/core/InputBase';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import Button from '@material-ui/core/Button';
-
-
-
-
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {
@@ -83,6 +78,7 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
     { !workshops ? <h4>Loading</h4> :
     ( <div>
       <FormControl className={classes.formControl}>
+
         <InputLabel id="demo-customized-select-label">Цех</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -94,7 +90,6 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
         {workshops.map((item) => (<MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>)) }
         </Select>
       </FormControl>
-
       <FormControl className="inputobject">
           <Autocomplete
             id="combo-box-demo"
@@ -114,7 +109,6 @@ export default function InputWorkShop({selectedWorkshops, setSelectedWorkshops, 
               )}
           /> 
       </FormControl>
-
     </div>)}
 
    </>

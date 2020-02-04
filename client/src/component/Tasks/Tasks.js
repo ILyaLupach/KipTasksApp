@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import lodash from "lodash";
 import "./Tasks.css";
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 import Preloader from "../Preloader/Preloader";
 import sortBy from "../../secondaryFunctions/sortBy";
@@ -17,12 +19,15 @@ class Tasks extends React.Component  {
   
   serv = new ServerKip();
 
+
+  state={ size: 100 }
+  
   componentDidMount() {
     this.updateTasks();
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps != this.props){
+    if(prevProps !== this.props){
       this.scrollToBottom();
     }
   }
@@ -31,7 +36,7 @@ class Tasks extends React.Component  {
     this.props.loadingTasks(true);
   }
   
-  state={ size: 100 }
+
 
 
   updateTasks = () => {
@@ -54,7 +59,6 @@ class Tasks extends React.Component  {
 
   sizeUp = () => {
     this.setState(({size}) => this.state.size = size+50);
-    console.log(this.state.size);
   }
 
   render() {
@@ -64,10 +68,16 @@ class Tasks extends React.Component  {
     
     return (
       <>
-      <div className="workshoplist" >
-{/*         <button onClick={this.sizeUp}>+1</button>
- */}        <Preloader open={this.props.store.loading}/>
 
+
+      <div className="workshoplist" >
+        <Preloader open={this.props.store.loading}/>
+        {tasks.length && tasks.length >= 100 ? 
+        <div className="addtaskstittle" 
+          style={{ paddingBottom: 10, paddingTop: 10, marginBottom: 10, marginTop: 73, background: "#ffffff" }} 
+          onClick={this.sizeUp}>
+          <NavigationIcon />
+        </div> : ""}
         {
           (
             !tasks ? (<h2>Loading...</h2>) : 

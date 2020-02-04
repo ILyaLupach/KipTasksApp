@@ -16,6 +16,7 @@ import InputDate from "./InputDate";
 import InputName from "./InputName";
 import InputFailure from "./InputFailure";
 
+import EditWorkShopsList from "./EditWorkShops";
 
 import ServerKip from "../../services/services";
 import {getAllPersons, getAllWorkshops}  from "../../actions";
@@ -105,12 +106,13 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
 
 
 
-  if( body.name !== [] && body.name.length !== 0 &&  body.position !== ''&&  body.object !== '' &&  body.failure !== '' &&  body.fix !== ''){
+  if( body.name !== [] && body.name.length !== 0 &&  body.position !== '' &&  body.object !== ''  &&  body.object.length > 1  &&  body.failure !== '' &&  body.fix !== ''){
 
     if(allWorkshops.filter(item => item.name === body.position)[0].object.filter(item => item === body.object).length === 0) {
 
       const obj = allWorkshops.filter(item => item.name === body.position)[0].object;
       const newObj = [...obj, body.object];
+      
       serv.updateData("workshops" , allWorkshops.filter(item => item.name === body.position)[0]._id, {object: newObj})
     }
 
@@ -194,14 +196,14 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
             selectedFinish={selectedFinish}     
             setSelectedFinish={setSelectedFinish} />
           
-        <span className="addtaskstittle"> Участвующие работники </span>
+        <span className="addtaskstittle"> Участвующие работники: </span>
 
         <InputName 
           persons={allPersons}
           personName={personName} 
           setPersonName={setPersonName} />
 
-        <span className="addtaskstittle"> Цех и место поломки </span>
+        <span className="addtaskstittle"> Цех и место поломки<EditWorkShopsList /> </span>
 
         <InputWorkShop 
           getAllWorkshops={getAllWorkshops}
@@ -211,7 +213,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
           selectedObject={selectedObject}
           setselectedObject={setselectedObject}/>
 
-        <span className="addtaskstittle"> Описание проблемы и решение </span>
+        <span className="addtaskstittle"> Описание проблемы и решение: </span>
 
         <InputFailure 
           valueFailure={valueFailure}

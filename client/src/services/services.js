@@ -64,6 +64,19 @@ export default class ServerKip {
         return await person
     }
 
+    addNewWorkShops = async (data) => {
+        const workshop = await fetch("/workshops", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+            })
+
+        return await workshop
+    }
+
     
     deleteItem = (id, url) => {
         fetch(`/${url}/${id}`, {
