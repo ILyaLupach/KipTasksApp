@@ -7,6 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {connect} from "react-redux";
+import {getAllTasks}  from "../../actions";
+import lodash from "lodash";
+import ServerKip from "../../services/services";
+
+import sizeArr from "../../secondaryFunctions/sizeArr";
+
+import PrintFilter from "./PrintFilter";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -14,7 +22,9 @@ const StyledTableCell = withStyles(theme => ({
     color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14,
+    fontSize: 12,
+    padding: 2,
+    paddingLeft: 5
   },
 }))(TableCell);
 
@@ -26,57 +36,6 @@ const StyledTableRow = withStyles(theme => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 const useStyles = makeStyles({
   table: {
@@ -88,41 +47,82 @@ const useStyles = makeStyles({
   }
 });
 
-export default function PrintList() {
+
+function PrintList({store, getAllTasks}) {
+
   const classes = useStyles();
+  
+  const serv = new ServerKip();
+
+  const [state, setState] = React.useState(store)
+
+  React.useEffect(() => {
+    serv.getAllTasks()
+    .then(res => {
+    getAllTasks(res);})
+  }, [state])
+
+  const [open, setOpen] = React.useState(true);
+  const [searchWith, setSearchWith] = React.useState(new Date());
+  const [searchBy, setSearchBy] = React.useState(new Date());
+
+  const firmatTime = (time) => {
+    if (time < 10) {
+      return time = "0" + time}
+    else return time
+  }
+
+
+  const  tasks = lodash.sortBy(store,  ["date"]).reverse();
+  if(!tasks && tasks.length < 1) return (<h2> Loading </h2>)
+
+  const sortTasks = tasks.filter((item) => new Date(item.date) >= searchWith && new Date(item.date) <= searchBy)
+
+  sizeArr(tasks, 1000);
 
   return (
     <>
     <div className="printlist"></div>
-    
-    <TableContainer component={Paper}>
+      <PrintFilter open={open} setOpen={setOpen}
+      searchWith={searchWith} searchBy={searchBy} 
+      setSearchWith={setSearchWith} setSearchBy={setSearchBy} />
+     { !sortTasks ? "" : <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead >
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 100 }} align="left">Дата</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 100 }} align="left">Время устранения</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 180 }} align="left">Ф.И.О. работников</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 200 }} align="left">Цех</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 150 }} align="left">Проблема</StyledTableCell>
+            <StyledTableCell onClick={()=>setOpen(true)} style={{ minWidth: 220 }} align="left">Решение</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row,i) => (
-            <StyledTableRow key={row.name+i}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+          {sortTasks.map((task,i) => (
+            <StyledTableRow key={task._id}>
+
+              <StyledTableCell align="left"> {`${firmatTime(new Date(task.date).getDate())} / ${firmatTime(new Date(task.date).getMonth() + 1)} / ${new Date(task.date).getFullYear()}`}</StyledTableCell>
+              <StyledTableCell align="left">{`${firmatTime(new Date(task.start).getHours())}:${firmatTime(new Date(task.start).getMinutes())} - ${firmatTime(new Date(task.finish).getHours())}:${firmatTime(new Date(task.finish).getMinutes())}`}</StyledTableCell>
+              <StyledTableCell align="left"> {task.name.join(", ")} </StyledTableCell>
+              <StyledTableCell align="left">{`${task.position} (${task.object})`}</StyledTableCell>
+              <StyledTableCell align="left">{task.failure}</StyledTableCell>
+              <StyledTableCell align="left">{task.fix}</StyledTableCell> 
+            
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
-
+    </TableContainer> }
     </>
-
     );
 }
+const mapStateToProps = ({tasksReducer}) => ({
+  store: tasksReducer.tasks,
+})
+
+const mapDispatchToProps = dispatch => ({
+  getAllTasks: (tasks) => dispatch(getAllTasks(tasks)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrintList);

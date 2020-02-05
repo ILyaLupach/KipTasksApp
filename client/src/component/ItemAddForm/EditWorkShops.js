@@ -126,7 +126,7 @@ function EditWorkShopsList({workshops, getAllWorkshops}) {
 
   return (
     <>
-      <span onClick={handleClickOpen}>:</span>
+      <span onClick={handleClickOpen}>Цех</span>
 
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogContent>

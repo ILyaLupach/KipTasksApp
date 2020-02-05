@@ -9,6 +9,7 @@ import {
 import TimeInput from 'material-ui-time-picker'
 import "./ItemAddForm.css";
 
+import { Link } from 'react-router-dom';
 
 
 
@@ -42,7 +43,7 @@ export default function InputDate({selectedDate, setSelectedDate, selectedStart,
         />
 
         <span className="addtaskstittle">
-          Время начала и завершения вызова:
+        <Link  style={{color: "black"}} to="/printlist">Время</Link>  начала и завершения вызова:
         </span>
 
 

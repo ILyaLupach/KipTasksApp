@@ -26,11 +26,11 @@ export default class App extends React.Component {
                         <Route path="/" exact component={WorkShop} />
                         <Route path="/personlist" exact component={Persons} />
                         <Route path="/addTasks" component={ItemAddForm} />
+                        <Route path="/printlist" component={PrintList} />
 
                 </Router>
-                <Router>
-                    <Route path="/printlist" component={PrintList} />
-                </Router>
+
+
 
                 <div className="backgroundPage"></div>
             </Provider>

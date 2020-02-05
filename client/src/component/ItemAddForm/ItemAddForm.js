@@ -203,7 +203,7 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
           personName={personName} 
           setPersonName={setPersonName} />
 
-        <span className="addtaskstittle"> Цех и место поломки<EditWorkShopsList /> </span>
+        <span className="addtaskstittle"><EditWorkShopsList /> и место поломки: </span>
 
         <InputWorkShop 
           getAllWorkshops={getAllWorkshops}
