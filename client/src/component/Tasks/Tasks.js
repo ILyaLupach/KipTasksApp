@@ -37,24 +37,18 @@ class Tasks extends React.Component  {
   }
   
 
-
-
   updateTasks = () => {
     this.props.loadingTasks(true);
     this.serv.getAllTasks()
     .then(res => {
       this.props.getAllTasks(res);
-      setTimeout(() => {
-        this.props.loadingTasks(false);
-      }, 1000);
+      this.props.loadingTasks(false);
     });
   }
   myRef = React.createRef();
 
   scrollToBottom = () => {
-    if(this.myRef.current){
-      this.myRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    window.scrollTo(0, this.myRef.current.scrollHeight);
   }
 
   sizeUp = () => {
@@ -69,8 +63,7 @@ class Tasks extends React.Component  {
     return (
       <>
 
-
-      <div className="workshoplist" >
+      <div className="workshoplist" ref={this.myRef}>
         <Preloader open={this.props.store.loading}/>
         {tasks.length && tasks.length >= 100 ? 
         <div className="addtaskstittle" 
@@ -88,7 +81,6 @@ class Tasks extends React.Component  {
                   else visibleDate=true;
                 }
 
-
               return (<TasksItem 
                 key={item._id} 
                 num={i}
@@ -99,7 +91,7 @@ class Tasks extends React.Component  {
                 visibleDate={visibleDate}/>)})
           )
         }
-        <div ref={this.myRef}></div>
+        <div ></div>
       </div>
 
       <Link to="/addTasks">
@@ -113,9 +105,9 @@ class Tasks extends React.Component  {
       </Link>
 
     </>
-  )
-}
+    )
   }
+}
 
 const mapStateToProps = ({tasksReducer, filterReducers}) => ({
   store: tasksReducer,
