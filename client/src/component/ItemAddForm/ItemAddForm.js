@@ -97,14 +97,6 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
       fix: valueFixed
   }
 
-  if(allWorkshops.filter(item => item.name === body.position)[0].object.filter(item => item === body.object).length === 0) {
-
-    const obj = allWorkshops.filter(item => item.name === body.position)[0].object;
-    const newObj = [...obj, body.object];
-    serv.updateData("workshops" , allWorkshops.filter(item => item.name === body.position)[0]._id, {object: newObj})
-  }
-
-
 
   if( body.name !== [] && body.name.length !== 0 &&  body.position !== '' &&  body.object !== ''  &&  body.object.length > 1  &&  body.failure !== '' &&  body.fix !== ''){
 
@@ -112,7 +104,6 @@ function ItemAddForm({getAllWorkshops, getAllPersons, persons, workshops}) {
 
       const obj = allWorkshops.filter(item => item.name === body.position)[0].object;
       const newObj = [...obj, body.object];
-      
       serv.updateData("workshops" , allWorkshops.filter(item => item.name === body.position)[0]._id, {object: newObj})
     }
 
