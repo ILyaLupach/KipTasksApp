@@ -57,7 +57,7 @@ class Tasks extends React.Component  {
 
   render() {
 
-    const  tasks = sortBy(lodash.sortBy(this.props.store.tasks,  ["start"]), this.props.filterBy, this.props.searchQuery) ;
+    const  tasks = sortBy(lodash.sortBy(this.props.store.tasks,  ["date"]), this.props.filterBy, this.props.searchQuery) ;
     sizeArr(tasks, this.state.size)
     
     return (
